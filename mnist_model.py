@@ -36,8 +36,8 @@ class MLP(nn.Module):
 def mnist(input_dims=784, n_hiddens=[256, 256], n_class=10, pretrained=None):
     model = MLP(input_dims, n_hiddens, n_class)
     if pretrained is not None:
-        m = model_zoo.load_url(model_urls['mnist'])
+        m = model_zoo.load_url(model_urls['mnist'],map_location='cpu')
         state_dict = m.state_dict() if isinstance(m, nn.Module) else m
         assert isinstance(state_dict, (dict, OrderedDict)), type(state_dict)
-        model.load_state_dict(state_dict,map_location=torch.device('cpu'))
+        model.load_state_dict(state_dict)
     return model
