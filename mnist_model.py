@@ -39,5 +39,5 @@ def mnist(input_dims=784, n_hiddens=[256, 256], n_class=10, pretrained=None):
         m = model_zoo.load_url(model_urls['mnist'])
         state_dict = m.state_dict() if isinstance(m, nn.Module) else m
         assert isinstance(state_dict, (dict, OrderedDict)), type(state_dict)
-        model.load_state_dict(state_dict)
+        model.load_state_dict(state_dict,map_location=torch.device('cpu'))
     return model
